@@ -1,0 +1,33 @@
+{
+  "name": "radiowave-pwa",
+  "version": "1.0.0",
+  "description": "A modern PWA radio music player with Radio Browser API integration",
+  "main": "index.html",
+    "scripts": {    "start": "npx live-server --port=8000 --no-browser",    "dev": "npx live-server --port=8000",    "serve": "python -m http.server 8000",    "build": "echo \"Static build - no build process needed\"",    "deploy": "echo \"Push to GitHub and enable GitHub Actions for automatic deployment\"",    "test": "echo \"No tests specified\" && exit 0"  },
+  "keywords": [
+    "pwa",
+    "radio",
+    "music",
+    "player",
+    "offline",
+    "mobile",
+    "radio-browser",
+    "streaming"
+  ],
+  "author": "RadioWave Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/radiowave-pwa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/radiowave-pwa/issues"
+  },
+  "homepage": "https://github.com/your-username/radiowave-pwa#readme"
+} 

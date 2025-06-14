@@ -1,0 +1,1129 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1db954;
+    --primary-dark: #1ed760;
+    --background-color: #121212;
+    --surface-color: #181818;
+    --card-color: #282828;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-muted: #535353;
+    --border-color: #404040;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --gradient: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+    --top-player-height: 80px;
+    --nav-height: 70px;
+    --header-height: 60px;
+    /* Landscape mode variables */
+    --landscape-player-width: 400px;
+    --landscape-nav-width: 200px;
+    --landscape-touch-target: 60px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100vw;
+}
+
+/* Top Player Bar */
+.top-player-bar {
+    background: var(--surface-color);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--top-player-height);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+}
+
+.current-station-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.station-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.station-icon i {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.station-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.station-text .station-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.station-text .station-status {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.top-player-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.top-control-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--card-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.top-control-btn:hover {
+    background-color: var(--surface-color);
+    transform: scale(1.05);
+}
+
+.top-control-btn.play-pause {
+    width: 52px;
+    height: 52px;
+    background: var(--gradient);
+    font-size: 1.1rem;
+}
+
+.top-control-btn.play-pause:hover {
+    background: var(--primary-dark);
+    transform: scale(1.08);
+}
+
+/* Header Styles */
+.app-header {
+    background: var(--background-color);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--header-height);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: var(--top-player-height);
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--card-color);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    background-color: var(--surface-color);
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.search-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: calc(var(--top-player-height) + var(--header-height) + 1rem) 1rem calc(var(--nav-height) + 1rem);
+    overflow-y: auto;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--card-color);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+}
+
+.filter-btn.active {
+    background: var(--gradient);
+    color: var(--text-primary);
+}
+
+.upload-btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: var(--gradient);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Stations Grid */
+.stations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.station-card {
+    background: var(--card-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.station-card:hover {
+    background: var(--surface-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.station-card.active {
+    background: var(--surface-color);
+    border: 2px solid var(--primary-color);
+}
+
+.station-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.station-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    overflow: hidden;
+    position: relative;
+}
+
+.station-avatar i {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.station-details h3 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.station-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.station-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.play-btn {
+    background: var(--gradient);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+}
+
+.favorite-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn:hover,
+.favorite-btn.active {
+    color: var(--primary-color);
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Loading State */
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+}
+
+.loading i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* Landscape Extras */
+.landscape-extras {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1000;
+}
+
+.control-btn {
+    background: var(--card-color);
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+}
+
+.control-btn:hover {
+    background-color: var(--surface-color);
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
+    flex: 1;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+.nav-item i {
+    font-size: 1.3rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--surface-color);
+    border-radius: 12px;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 500px;
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease;
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: var(--card-color);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(29, 185, 84, 0.1);
+}
+
+.upload-area i {
+    font-size: 3rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.upload-area p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Volume Modal */
+.volume-modal {
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: calc(var(--nav-height) + var(--player-height) + 1rem);
+}
+
+.volume-content {
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    animation: modalSlideUp 0.3s ease;
+}
+
+.volume-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.volume-slider {
+    width: 150px;
+    height: 4px;
+    background: var(--border-color);
+    outline: none;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+#volumeValue {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    min-width: 35px;
+}
+
+/* Animations */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .stations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .filter-buttons {
+        justify-content: center;
+    }
+    
+    .app-header {
+        padding: 0.5rem;
+    }
+    
+    .search-container {
+        max-width: none;
+    }
+    
+    .top-player-bar {
+        padding: 0.75rem;
+    }
+    
+    .top-control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+    
+    .top-control-btn.play-pause {
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
+    }
+    
+    .station-icon {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .station-icon i {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stations-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .station-card {
+        padding: 1rem;
+    }
+    
+    .filter-buttons {
+        gap: 0.3rem;
+    }
+    
+    .filter-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .modal-content {
+        width: 95vw;
+    }
+    
+    .volume-slider {
+        width: 120px;
+    }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* Landscape Mode - Car-Friendly Interface */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    :root {
+        --header-height: 50px;
+        --nav-height: 100vh;
+        --top-player-height: 0;
+        --landscape-player-width: 40%;
+        --stations-width: 60%; /* Width for the stations area */
+    }
+
+    .app-container {
+        flex-direction: row;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Hide top player bar in landscape */
+    .top-player-bar {
+        display: none;
+    }
+
+    /* Hide regular header and navigation in landscape */
+    .app-header, .bottom-nav {
+        display: none;
+    }
+
+    /* Main Content - Left side */
+    .main-content {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: var(--stations-width);
+        height: 100vh;
+        padding: 20px;
+        overflow-y: auto;
+        margin: 0;
+        z-index: 900;
+        border-right: 1px solid var(--border-color);
+    }
+
+    /* Landscape Controls Panel - Right side */
+    .landscape-controls-panel {
+        display: flex;
+        flex-direction: column;
+        width: var(--landscape-player-width);
+        height: 100vh;
+        background: var(--background-color);
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+        justify-content: space-between;
+    }
+
+    /* Player Info in Landscape */
+    .landscape-player-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .landscape-station-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .landscape-station-icon i {
+        font-size: 2rem;
+        color: white;
+    }
+
+    .landscape-station-text {
+        width: 100%;
+    }
+
+    .landscape-station-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .landscape-station-status {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+
+    /* Controls Container */
+    .landscape-controls-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Player Controls in Landscape */
+    .landscape-player-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .landscape-control-btn {
+        width: 55px;
+        height: 55px;
+        border: none;
+        border-radius: 50%;
+        background-color: var(--card-color);
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
+    }
+
+    .landscape-control-btn:hover {
+        background-color: var(--surface-color);
+        transform: scale(1.05);
+    }
+
+    .landscape-control-btn.play-pause {
+        width: 70px;
+        height: 70px;
+        background: var(--primary-color);
+        font-size: 1.5rem;
+    }
+
+    /* Extra Controls in Landscape */
+    .landscape-extra-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+
+    .landscape-extra-btn {
+        background: var(--card-color);
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 10px 15px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .landscape-extra-btn:hover {
+        background-color: var(--surface-color);
+        color: var(--primary-color);
+    }
+
+    /* Volume slider in landscape */
+    .landscape-volume-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--card-color);
+        border-radius: 12px;
+        padding: 8px 15px;
+        width: auto;
+        min-width: 150px;
+    }
+
+    .landscape-volume-slider {
+        width: 80px;
+        height: 6px;
+        background: var(--border-color);
+        outline: none;
+        border-radius: 3px;
+        -webkit-appearance: none;
+    }
+
+    .landscape-volume-slider::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .landscape-volume-slider::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+    }
+
+    #landscapeVolumeValue {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        min-width: 40px;
+        text-align: right;
+    }
+
+    #landscapeVolumeIcon {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+    }
+
+    /* Navigation in Landscape */
+    .landscape-nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 15px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .landscape-nav-item {
+        background: var(--card-color);
+        border: none;
+        border-radius: 8px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        padding: 12px 10px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        flex: 1;
+        min-width: 80px;
+    }
+
+    .landscape-nav-item.active {
+        background: var(--primary-color);
+        color: var(--text-primary);
+    }
+
+    .landscape-nav-item:hover:not(.active) {
+        background: var(--surface-color);
+        color: var(--text-primary);
+    }
+
+    .landscape-nav-item i {
+        font-size: 1.5rem;
+        margin-bottom: 3px;
+    }
+
+    /* Search Bar in Landscape */
+    .landscape-search {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .landscape-search .search-input {
+        height: 45px;
+        font-size: 1rem;
+        padding: 0 20px 0 15px;
+    }
+
+    /* Stations Grid - Single Column Layout */
+    .stations-grid {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .station-card {
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 15px;
+        min-height: 80px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(40, 40, 40, 0.7);
+        border: 1px solid var(--border-color);
+        margin-bottom: 0;
+    }
+
+    /* Volume Modal in Landscape */
+    .volume-modal .volume-content {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--surface-color);
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+    }
+}
+
+/* Additional Landscape Optimizations for Smaller Screens */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    :root {
+        --landscape-touch-target: 50px;
+    }
+
+    .landscape-station-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .landscape-station-icon i {
+        font-size: 1.5rem;
+    }
+
+    .landscape-station-name {
+        font-size: 1.1rem;
+    }
+
+    .landscape-station-status {
+        font-size: 0.8rem;
+    }
+
+    .landscape-player-info {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .landscape-control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .landscape-control-btn.play-pause {
+        width: 55px;
+        height: 55px;
+        font-size: 1.2rem;
+    }
+
+    .landscape-player-controls {
+        margin-bottom: 15px;
+        gap: 15px;
+    }
+
+    .landscape-extra-controls {
+        margin-bottom: 15px;
+    }
+
+    .landscape-nav-item {
+        padding: 8px 5px;
+        font-size: 0.8rem;
+        min-width: 70px;
+    }
+
+    .landscape-nav-item i {
+        font-size: 1.2rem;
+        margin-bottom: 2px;
+    }
+
+    .landscape-extra-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .landscape-volume-container {
+        padding: 6px 10px;
+        min-width: 120px;
+    }
+
+    .landscape-volume-slider {
+        width: 60px;
+    }
+} 

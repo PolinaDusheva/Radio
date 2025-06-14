@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <title>RadioWave - Music Player</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="RadioWave - Your ultimate radio music player">
+    <meta name="theme-color" content="#1db954">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RadioWave">
+    <meta name="application-name" content="RadioWave">
+    
+    <!-- Icons -->    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192x192.png">    <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512x512.png">    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">    <link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152x152.png">    <link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/ios-fixes.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          onerror="this.onerror=null;this.href='css/fallback/fontawesome.min.css';">
+</head>
+<body>
+    <!-- iOS Status Bar Fix -->
+    <div class="status-bar-fix"></div>
+    
+    <div class="app-container">
+        <!-- Top Player Bar -->
+        <div class="top-player-bar" id="topPlayerBar">
+            <div class="current-station-info">
+                <div class="station-icon">
+                    <i class="fas fa-radio"></i>
+                </div>
+                <div class="station-text">
+                    <div class="station-name">Select a station</div>
+                    <div class="station-status">Radio</div>
+                </div>
+            </div>
+            <div class="top-player-controls">
+                <button id="topPrevBtn" class="top-control-btn">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button id="topPlayPauseBtn" class="top-control-btn play-pause">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="topNextBtn" class="top-control-btn">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-section="radio">
+                <i class="fas fa-radio"></i>
+                <span>Radio</span>
+            </button>
+            <button class="nav-item" data-section="favorites">
+                <i class="fas fa-heart"></i>
+                <span>Favorites</span>
+            </button>
+            <button class="nav-item" data-section="my-music">
+                <i class="fas fa-music"></i>
+                <span>My Music</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Radio Stations Section -->
+            <section id="radio-section" class="content-section active">
+                <div class="section-header">
+                    <h2>Radio Stations</h2>
+                    <div class="filter-search-container">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="Search stations..." class="search-input">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="stations-grid" class="stations-grid">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading stations...</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Favorites Section -->
+            <section id="favorites-section" class="content-section">
+                <div class="section-header">
+                    <h2>Your Favorites</h2>
+                </div>
+                <div id="favorites-grid" class="stations-grid">
+                    <div class="empty-state">
+                        <i class="fas fa-heart"></i>
+                        <h3>No favorites yet</h3>
+                        <p>Add stations to your favorites to see them here</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Music Section -->
+            <section id="my-music-section" class="content-section">
+                <div class="section-header">
+                    <h2>My Music</h2>
+                    <button id="uploadBtn" class="upload-btn">
+                        <i class="fas fa-plus"></i>
+                        Upload Song
+                    </button>
+                </div>
+                <div id="my-music-grid" class="stations-grid">
+                    <div class="empty-state">
+                        <i class="fas fa-music"></i>
+                        <h3>No songs uploaded</h3>
+                        <p>Upload your music to listen offline</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Landscape Controls Panel - Only visible in landscape mode -->
+        <div class="landscape-controls-panel" id="landscapeControlsPanel" style="display: none;">
+            <!-- Player Info -->
+            <div class="landscape-player-info">
+                <div class="landscape-station-icon">
+                    <i class="fas fa-radio"></i>
+                </div>
+                <div class="landscape-station-text">
+                    <div class="landscape-station-name">Select a station</div>
+                    <div class="landscape-station-status">Radio</div>
+                </div>
+            </div>
+            
+            <!-- Controls Container -->
+            <div class="landscape-controls-container">
+                <!-- Player Controls -->
+                <div class="landscape-player-controls">
+                    <div class="landscape-player-controls-row">
+                        <button id="landscapePrevBtn" class="landscape-control-btn">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button id="landscapePlayPauseBtn" class="landscape-control-btn play-pause">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button id="landscapeNextBtn" class="landscape-control-btn">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <!-- Favorite Button -->
+                        <button id="landscapeFavoriteBtn" class="landscape-extra-btn">
+                            <i class="far fa-heart"></i>
+                            <span>Favorite</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Volume Control -->
+                    <div class="landscape-volume-container">
+                        <i class="fas fa-volume-up" id="landscapeVolumeIcon"></i>
+                        <input type="range" id="landscapeVolumeSlider" min="0" max="100" value="50" class="landscape-volume-slider">
+                        <span id="landscapeVolumeValue">50%</span>
+                    </div>
+                </div>
+
+                <!-- Extra Controls -->
+                <div class="landscape-extra-controls" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Navigation in Landscape -->
+            <div class="landscape-nav">
+                <button class="landscape-nav-item active" data-section="radio">
+                    <i class="fas fa-radio"></i>
+                    <span>Radio Stations</span>
+                </button>
+                <button class="landscape-nav-item" data-section="favorites">
+                    <i class="fas fa-heart"></i>
+                    <span>Favorites</span>
+                </button>
+                <button class="landscape-nav-item" data-section="my-music">
+                    <i class="fas fa-music"></i>
+                    <span>My Music</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Now Playing Indicator for Landscape Mode -->
+        <div class="landscape-now-playing" id="landscapeNowPlaying">
+            <i class="fas fa-play"></i>
+            <span>Now Playing</span>
+        </div>
+
+        <!-- Additional Controls for Landscape Mode -->
+        <div class="landscape-extras" id="landscapeExtras">
+            <button id="favoriteBtn" class="control-btn">
+                <i class="far fa-heart"></i>
+            </button>
+            <button id="volumeBtn" class="control-btn">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+
+        <!-- Upload Modal -->
+        <div id="uploadModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Upload Song</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-music"></i>
+                        <p>Drag & drop your MP3 files here or click to browse</p>
+                        <input type="file" id="fileInput" accept="audio/mp3,.mp3" multiple style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Volume Modal -->
+        <div id="volumeModal" class="modal volume-modal">
+            <div class="volume-content">
+                <div class="volume-slider-container">
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
+                    <span id="volumeValue">50%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audioElement" preload="auto" crossorigin="anonymous" autoplay="false" x-webkit-airplay="allow" playsinline="true"></audio>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html> 

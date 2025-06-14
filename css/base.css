@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Prevent thin text on iOS */
+button {
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    --primary-color: #1db954;
+    --primary-dark: #1ed760;
+    --background-color: #121212;
+    --surface-color: #181818;
+    --card-color: #282828;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-muted: #535353;
+    --border-color: #404040;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --gradient: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+    --heart-color: #f06292;
+    --top-player-height: 80px;
+    --nav-height: 70px;
+    --header-height: 60px;
+    --landscape-player-width: 400px;
+    --landscape-nav-width: 200px;
+    --landscape-touch-target: 60px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+} 

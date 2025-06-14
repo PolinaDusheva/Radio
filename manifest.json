@@ -1,0 +1,51 @@
+{
+  "name": "RadioWave - Music Player",
+  "short_name": "RadioWave",
+  "description": "Your ultimate radio music player with offline capabilities",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#1db954",
+  "orientation": "portrait-primary",
+  "categories": ["music", "entertainment"],
+  "screenshots": [
+    {
+      "src": "./icons/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "RadioWave App"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "My Music",
+      "short_name": "Music",
+      "description": "Listen to your uploaded music",
+      "url": "/?section=my-music",
+      "icons": [{ "src": "./icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Favorites",
+      "short_name": "Favorites",
+      "description": "Listen to your favorite stations",
+      "url": "/?section=favorites",
+      "icons": [{ "src": "./icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "icons": [
+    {
+      "src": "./icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "./icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+} 

@@ -1,0 +1,260 @@
+.top-player-bar {
+    background: var(--surface-color);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--top-player-height);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+}
+
+.current-station-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.station-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.station-icon i {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.station-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.station-text .station-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.station-text .station-status {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.top-player-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.top-control-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--card-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.top-control-btn:hover {
+    background-color: var(--surface-color);
+    transform: scale(1.05);
+}
+
+.top-control-btn.play-pause {
+    width: 52px;
+    height: 52px;
+    background: var(--gradient);
+    font-size: 1.1rem;
+}
+
+.top-control-btn.play-pause:hover {
+    background: var(--primary-dark);
+    transform: scale(1.08);
+}
+
+.control-btn {
+    background: var(--card-color);
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+}
+
+.control-btn:hover {
+    background-color: var(--surface-color);
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.play-btn {
+    background: var(--gradient);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+}
+
+.favorite-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn:hover,
+.favorite-btn.active {
+    color: var(--primary-color);
+}
+
+.volume-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.volume-slider {
+    width: 150px;
+    height: 4px;
+    background: var(--border-color);
+    outline: none;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+#volumeValue {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    min-width: 35px;
+}
+
+/* Vertical volume slider for landscape mode */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .landscape-player-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .landscape-player-controls-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .landscape-volume-container {
+        width: 100%;
+        max-width: 280px;
+        background: var(--card-color);
+        border-radius: 25px;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .landscape-volume-slider {
+        flex: 1;
+        height: 6px;
+        background: var(--border-color);
+        outline: none;
+        border-radius: 3px;
+        -webkit-appearance: none;
+    }
+    
+    .landscape-volume-slider::-webkit-slider-thumb {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .landscape-volume-slider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+    }
+    
+    #landscapeVolumeValue {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        min-width: 40px;
+        text-align: right;
+    }
+    
+    #landscapeVolumeIcon {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+    }
+} 

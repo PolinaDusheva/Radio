@@ -1,0 +1,41 @@
+/* Fallback Font Awesome CSS for offline use */
+.fas, .far, .fa, .fab {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: sans-serif;
+}
+
+/* Basic icon shapes */
+.fa-radio:before,
+.fa-music:before { content: "♫"; }
+.fa-heart:before { content: "♥"; }
+.fa-play:before { content: "▶"; }
+.fa-pause:before { content: "⏸"; }
+.fa-step-forward:before { content: "⏩"; }
+.fa-step-backward:before { content: "⏪"; }
+.fa-volume-up:before,
+.fa-volume-down:before,
+.fa-volume-off:before,
+.fa-volume-mute:before { content: "🔊"; }
+.fa-spinner:before { content: "⟳"; }
+.fa-check-circle:before { content: "✓"; }
+.fa-exclamation-circle:before,
+.fa-exclamation-triangle:before { content: "⚠"; }
+.fa-plus:before { content: "+"; }
+.fa-download:before { content: "↓"; }
+.fa-trash:before { content: "🗑"; }
+.fa-search:before { content: "🔍"; }
+.fa-wifi-slash:before { content: "📵"; }
+
+/* Animation for spinner */
+@keyframes fa-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fa-spin {
+  animation: fa-spin 2s infinite linear;
+} 
